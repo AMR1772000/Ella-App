@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <CardDrawer />
-    <v-main>
+    <v-main class="mt-[150px]">
       <slot> </slot>
     </v-main>
     <AppNav />
