@@ -1,5 +1,5 @@
 <template>
-  <v-footer :app="true">
+  <v-footer :app="true" color="red" absolute>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quaerat
       illum ipsum magni iusto tenetur expedita aperiam fugiat quas facere

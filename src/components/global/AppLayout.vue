@@ -1,5 +1,5 @@
 <template>
-  <v-layout>
+  <v-layout class="relative">
     <CardDrawer />
     <v-main class="mt-[150px]">
       <slot> </slot>
