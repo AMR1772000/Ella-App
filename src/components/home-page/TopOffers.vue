@@ -2,7 +2,7 @@
   <div class="top-offers bg-grey-lighten-4 pt-9">
     <v-container fluid>
       <v-row>
-        <v-col cols="4" class="pr-6">
+        <v-col cols="4" class="pr-3">
           <v-hover v-slot="{ isHovering, props }">
             <div
               class="parent overflow-hidden cursor-pointer h-[290px] rounded-lg"
@@ -36,7 +36,7 @@
             </div>
           </v-hover>
         </v-col>
-        <v-col cols="4" class="pl-3">
+        <v-col cols="4">
           <v-hover v-slot="{ isHovering, props }">
             <div
               class="parent overflow-hidden cursor-pointer h-[290px] rounded-lg"
