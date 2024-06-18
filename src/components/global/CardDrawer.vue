@@ -8,16 +8,12 @@
   </v-navigation-drawer>
 </template>
 
-<script>
-export default {
-  inject: ["Emitter"],
-  data: () => ({
-    drawer: false,
-  }),
-  mounted() {
-    this.Emitter.on("openCart", () => (this.drawer = true));
-  },
-};
-</script>
+<script setup>
+import { inject, onMounted, ref } from "vue";
+const Emitter = inject("Emitter");
+const drawer = ref(false);
 
-<style lang="scss" scoped></style>
+onMounted(() => {
+  Emitter.on("openCart", () => (drawer.value = true));
+});
+</script>
