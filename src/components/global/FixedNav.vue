@@ -68,6 +68,13 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { inject } from "vue";
+const Emitter = inject("Emitter");
+
+const openCart = () => {
+  Emitter.emit("openCart");
+};
+</script>
 
 <style lang="scss" scoped></style>

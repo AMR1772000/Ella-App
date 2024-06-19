@@ -15,7 +15,7 @@
               <v-btn
                 variant="outlined"
                 class="py-4 px-12"
-                density="combact"
+                density="auto"
                 style="border-radius: 30px; text-transform: none"
                 >Shop Now</v-btn
               >

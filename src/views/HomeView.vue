@@ -3,6 +3,7 @@
     <UpperBanner />
     <TheFeatures />
     <TopOffers />
+    <FlashDeals :products="flashDeals" />
   </div>
 </template>
 
@@ -11,16 +12,18 @@
 import UpperBanner from "@/components/home-page/UpperBanner.vue";
 import TheFeatures from "@/components/home-page/TheFeatures.vue";
 import TopOffers from "@/components/home-page/TopOffers.vue";
+import FlashDeals from "@/components/home-page/FlashDeals.vue";
 
 // store
-import { useProductsStore } from "../stores/products"; // Ensure the path is correct
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
+import { useProductsStore } from "@/stores/products";
 
-// Create an instance of the store
-const productsStore = useProductsStore();
+const productStore = useProductsStore();
 
-// Use the store action
-onMounted(() => {
-  productsStore.getProducts();
+// Define flashDeals as a computed property
+const flashDeals = computed(() => productStore.flashDeals);
+
+onMounted(async () => {
+  await productStore.getProducts();
 });
 </script>
