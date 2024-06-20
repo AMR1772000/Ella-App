@@ -6,16 +6,21 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
 
-// Vuetify
+// Vuetify Config
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 import "@mdi/font/css/materialdesignicons.css";
 
-//Emitter
+//Emitter Config
 import mitt from "mitt";
 const Emitter = mitt();
+
+//Swiper Config
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const vuetify = createVuetify({
   components,
