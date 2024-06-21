@@ -1,0 +1,120 @@
+<template>
+  <div class="new-products mb-10">
+    <div class="title mt-15 px-5 flex items-center justify-between">
+      <h2 class="font-black text-[32px]">New Products</h2>
+      <a href="#" class="text-sm underline">Shop Now</a>
+    </div>
+    <v-container fluid>
+      <v-row>
+        <v-col cols="7">
+          <Swiper
+            :pagination="{ el: '.swiper-pagination', clickable: true }"
+            :modules="modules"
+            :slides-per-view="3"
+            :space-between="20"
+            class="pb-12 px-5"
+          >
+            <swiper-slide v-for="item in products" :key="item.id">
+              <v-card elevation="0" class="pb-5">
+                <v-hover v-slot="{ isHovering, props }">
+                  <div class="parent h-[300px] overflow-hidden">
+                    <img
+                      :src="
+                        showenItem[item.title]
+                          ? showenItem[item.title]
+                          : item.thumbnail
+                      "
+                      :alt="item.title"
+                      :style="`transition: 0.8s all ease-in-out; scale: ${
+                        isHovering ? 1.05 : 1
+                      };cursor: pointer;`"
+                      class="w-full h-full"
+                      v-bind="props"
+                    />
+                  </div>
+                </v-hover>
+
+                <v-card-text class="px-0 pt-0">
+                  ({{ item.title }})
+                  {{
+                    item.description + " " + item.title.split(" ").length <= 7
+                      ? item.description
+                      : item.description
+                          .split(" ")
+                          .slice(0, 7 - item.title.split(" ").length)
+                          .join(" ") + "..."
+                  }}
+                </v-card-text>
+                <v-card-text class="pl-0 pt-0">
+                  $<del>{{ item.price }}</del> From
+                  <span class="text-red font-black text-base"
+                    >${{
+                      Math.ceil(
+                        item.price -
+                          item.price * (item.discountPercentage / 100)
+                      )
+                    }}</span
+                  >
+                </v-card-text>
+                <v-btn-toggle v-model="showenItem[item.title]">
+                  <v-btn
+                    v-for="(pic, i) in item.images"
+                    :key="i"
+                    :value="pic"
+                    size="x-small"
+                    rounded="xl"
+                    :ripple="false"
+                    ><img
+                      :src="pic"
+                      :alt="item.images[i]"
+                      width="35"
+                      height="35"
+                      style="
+                        border-radius: 50%;
+                        border: 1px solid rgb(135, 135, 135);
+                      "
+                  /></v-btn>
+                </v-btn-toggle>
+                <div>
+                  <v-btn
+                    class="py-4 px-9 mt-4"
+                    style="text-transform: none; border-radius: 30px"
+                    variant="outlined"
+                    density="combat"
+                    >Choose Options</v-btn
+                  >
+                </div>
+              </v-card>
+            </swiper-slide>
+            <div class="swiper-pagination"></div>
+          </Swiper>
+        </v-col>
+        <v-col cols="5" class="pt-10">
+          <img
+            src="../../assets/images/vr-banner.webp"
+            alt="vr banner"
+            class="w-full"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
+</template>
+
+<script setup>
+import { defineProps, ref } from "vue";
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import { Pagination } from "swiper";
+
+const showenItem = ref([]);
+const modules = [Pagination];
+// Define the props
+const props = defineProps({
+  products: {
+    type: Array,
+    required: true,
+  },
+});
+</script>
+
+<style lang="scss" scoped></style>
