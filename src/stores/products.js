@@ -9,14 +9,16 @@ export const useProductsStore = defineStore("productsModule", {
     async getProducts() {
       try {
         const res = await axios.get(
-          "https://dummyjson.com/products/?limit=100"
+          "https://dummyjson.com/products/?limit=194"
         );
         console.log(res.data.products);
         // Filter products by category
         const filteredProducts = res.data.products.filter(
           (product) =>
             product.category === "laptops" ||
-            product.category === "mens-watches"
+            product.category === "smartphones" ||
+            product.category === "tablets" ||
+            product.category === "mobile-accessories"
         );
         console.log(filteredProducts);
         this.flashDeals = filteredProducts.slice(0, 8);

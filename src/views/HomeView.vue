@@ -4,6 +4,7 @@
     <TheFeatures />
     <TopOffers />
     <ProductsSwiper :products="flashDeals" />
+    <TopCategories />
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import UpperBanner from "@/components/home-page/UpperBanner.vue";
 import TheFeatures from "@/components/home-page/TheFeatures.vue";
 import TopOffers from "@/components/home-page/TopOffers.vue";
 import ProductsSwiper from "@/components/home-page/ProductsSwiper.vue";
+import TopCategories from "@/components/home-page/TopCategories.vue";
 
 // store
 import { computed, onMounted } from "vue";
