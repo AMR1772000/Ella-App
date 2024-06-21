@@ -48,7 +48,7 @@
             readonly
             color="yellow-darken-2"
             size="x-small"
-            density="combact"
+            density="compact"
           ></v-rating>
           <v-card-text class="pl-0 pt-0">
             $<del>{{ item.price }}</del> From
@@ -84,7 +84,7 @@
               class="py-3 px-16 mt-6"
               style="text-transform: none; border-radius: 30px"
               variant="outlined"
-              density="combat"
+              density="compact"
               >Choose Options</v-btn
             >
           </div>

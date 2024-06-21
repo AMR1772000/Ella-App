@@ -80,7 +80,7 @@
                     class="py-4 px-9 mt-4"
                     style="text-transform: none; border-radius: 30px"
                     variant="outlined"
-                    density="combat"
+                    density="compact"
                     >Choose Options</v-btn
                   >
                 </div>
