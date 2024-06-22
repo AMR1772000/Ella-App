@@ -17,9 +17,7 @@ export const useProductsStore = defineStore("productsModule", {
         );
         // Filter products by category
         const filteredProducts = res.data.products.filter(
-          (product) =>
-            product.category === "tablets" ||
-            product.category === "mobile-accessories"
+          (product) => product.category === "mobile-accessories"
         );
         const filteredNewProducts = res.data.products.filter(
           (product) => product.category === "laptops"

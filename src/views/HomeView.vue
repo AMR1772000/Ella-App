@@ -55,6 +55,7 @@
       :title="`Top Home Decoration`"
       :textColor="`black`"
     />
+    <WhyShopWithUs />
   </div>
 </template>
 
@@ -67,6 +68,7 @@ import ProductsSwiper from "@/components/home-page/ProductsSwiper.vue";
 import TopCategories from "@/components/home-page/TopCategories.vue";
 import NewProducts from "@/components/home-page/NewProducts.vue";
 import QualityFeatures from "@/components/home-page/QualityFeatures.vue";
+import WhyShopWithUs from "@/components/home-page/WhyShopWithUs.vue";
 
 // store
 import { computed, onMounted } from "vue";
