@@ -1,7 +1,9 @@
 <template>
   <div class="products-swiper pt-16">
     <div class="title mb-5 px-5 flex items-center justify-between">
-      <h2 class="font-black text-red-500 text-[32px]">Flash Deals</h2>
+      <h2 class="font-black text-[32px]" :class="[`text-${textColor}`]">
+        {{ title }}
+      </h2>
       <a href="#" class="text-sm underline">Shop Now</a>
     </div>
     <Swiper
@@ -11,7 +13,7 @@
       :space-between="35"
       :navigation="{ prevIcon: '.swiper-prev', nextIcon: '.swiper-next' }"
       :autoplay="{ delay: 3000 }"
-      class="pb-12 px-5"
+      class="pb-12 px-10"
     >
       <swiper-slide v-for="item in products" :key="item.id">
         <v-card elevation="0" class="pb-5">
@@ -108,6 +110,14 @@ const modules = [Pagination, Navigation, Autoplay];
 const props = defineProps({
   products: {
     type: Array,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  textColor: {
+    type: String,
     required: true,
   },
 });
