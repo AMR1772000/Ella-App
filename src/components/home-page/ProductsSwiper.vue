@@ -6,6 +6,19 @@
       </h2>
       <a href="#" class="text-sm underline">Shop Now</a>
     </div>
+    <v-container fluid v-if="!products.length">
+      <v-row>
+        <v-col cols="12" class="mt-16">
+          <v-row>
+            <v-col cols="3" v-for="num in 4" :key="num">
+              <v-skeleton-loader
+                type="image,article,button "
+              ></v-skeleton-loader>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
     <Swiper
       :pagination="{ el: '.swiper-pagination', clickable: true }"
       :modules="modules"
@@ -36,11 +49,11 @@
           </v-hover>
 
           <v-card-text class="pl-0 pr-3">
-            ({{ item.title }})
             {{
-              item.description.split(" ").length <= 7
-                ? item.description
-                : item.description.split(" ").slice(0, 6).join(" ") + " ....."
+              `(${item.title}) ${item.description}`.length <= 57
+                ? `(${item.title}) ${item.description}`
+                : `(${item.title}) ${item.description}`.substring(0, 57) +
+                  "...."
             }}
           </v-card-text>
           <v-rating

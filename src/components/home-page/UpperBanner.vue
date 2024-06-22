@@ -14,7 +14,8 @@
               </p>
               <v-btn
                 variant="outlined"
-                class="py-4 px-12"
+                height="50"
+                width="150"
                 style="border-radius: 30px; text-transform: none"
                 >Shop Now</v-btn
               >

@@ -6,7 +6,16 @@
     </div>
     <v-container fluid>
       <v-row>
-        <v-col cols="7">
+        <v-col cols="7" v-if="!products.length" class="mt-16">
+          <v-row>
+            <v-col cols="4" v-for="num in 3" :key="num">
+              <v-skeleton-loader
+                type="image,article,button "
+              ></v-skeleton-loader>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col cols="7" v-else>
           <Swiper
             :pagination="{ el: '.swiper-pagination', clickable: true }"
             :modules="modules"
@@ -17,7 +26,7 @@
             <swiper-slide v-for="item in products" :key="item.id">
               <v-card elevation="0" class="pb-5">
                 <v-hover v-slot="{ isHovering, props }">
-                  <div class="parent h-[300px] overflow-hidden">
+                  <div class="parent h-[240px] overflow-hidden">
                     <img
                       :src="
                         showenItem[item.title]
@@ -35,14 +44,11 @@
                 </v-hover>
 
                 <v-card-text class="px-0 pt-0">
-                  ({{ item.title }})
                   {{
-                    item.description + " " + item.title.split(" ").length <= 7
-                      ? item.description
-                      : item.description
-                          .split(" ")
-                          .slice(0, 7 - item.title.split(" ").length)
-                          .join(" ") + "..."
+                    `(${item.title}) ${item.description}`.length <= 47
+                      ? `(${item.title}) ${item.description}`
+                      : `(${item.title}) ${item.description}`.substring(0, 47) +
+                        "...."
                   }}
                 </v-card-text>
                 <v-card-text class="pl-0 pt-0">
@@ -89,7 +95,7 @@
             <div class="swiper-pagination"></div>
           </Swiper>
         </v-col>
-        <v-col cols="5" class="pt-10">
+        <v-col cols="5" class="pt-5 pl-3">
           <img
             src="../../assets/images/vr-banner.webp"
             alt="vr banner"
