@@ -8,6 +8,33 @@ export const useProductsStore = defineStore("productsModule", {
     mobilePhones: [],
     watches: [],
     homeDecoration: [],
+    productCategory: [],
+    categories: [
+      {
+        title: "Laptops",
+        route: "laptops",
+      },
+      {
+        title: "Tablets",
+        route: "tablets",
+      },
+      {
+        title: "Smart Phones",
+        route: "smartphones",
+      },
+      {
+        title: "Home Decoration",
+        route: "home-decoration",
+      },
+      {
+        title: "Watches",
+        route: "mens-watches",
+      },
+      {
+        title: "Mobile Accessories",
+        route: "mobile-accessories",
+      },
+    ],
   }),
   actions: {
     async getProducts() {
@@ -39,10 +66,10 @@ export const useProductsStore = defineStore("productsModule", {
         const filteredHomeDecoration = res.data.products.filter(
           (product) => product.category === "home-decoration"
         );
-        console.log(filteredProducts);
-        console.log(filteredNewProducts);
-        console.log(filteredMobilePhones);
-        console.log(filteredWatches);
+        // console.log(filteredProducts);
+        // console.log(filteredNewProducts);
+        // console.log(filteredMobilePhones);
+        // console.log(filteredWatches);
         this.flashDeals = filteredProducts.slice(0, 8);
         this.newProducts = filteredNewProducts;
         this.mobilePhones = filteredMobilePhones.slice(0, 8);
@@ -51,6 +78,11 @@ export const useProductsStore = defineStore("productsModule", {
       } catch (err) {
         console.error("Error Fetching Products:", err);
       }
+    },
+    async getProductsByCategory(category) {
+      await axios
+        .get(`https://dummyjson.com/products/category/${category}`)
+        .then((res) => (this.productCategory = res.data));
     },
   },
 });

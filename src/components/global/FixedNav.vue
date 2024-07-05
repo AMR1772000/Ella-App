@@ -7,17 +7,22 @@
             <img
               src="/src/assets/images/logo-min.png"
               alt="logo"
-              class="w-2/4"
+              class="w-2/4 cursor-pointer"
+              @click="$router.push({ name: 'home' })"
             />
           </v-col>
           <v-col cols="6">
             <ul class="links flex justify-between">
-              <li>Themo Demo</li>
-              <li>Shop</li>
-              <li>Product</li>
-              <li>New In</li>
-              <li>Must Have</li>
-              <li>Collections</li>
+              <li v-for="category in categories" :key="category">
+                <router-link
+                  :to="{
+                    name: 'products-category',
+                    params: { category: category.route, title: category.title },
+                  }"
+                >
+                  {{ category.title }}
+                </router-link>
+              </li>
             </ul>
           </v-col>
           <v-col cols="3" class="flex justify-end items-center gap-5">
@@ -70,6 +75,12 @@
 
 <script setup>
 import { inject } from "vue";
+import { computed } from "vue";
+import { useProductsStore } from "@/stores/products";
+
+const productStore = useProductsStore();
+const categories = computed(() => productStore.categories);
+
 const Emitter = inject("Emitter");
 
 const openCart = () => {

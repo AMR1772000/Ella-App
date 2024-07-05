@@ -4,7 +4,12 @@
       <v-container fluid>
         <v-row>
           <v-col cols="3">
-            <img src="/src/assets/images/logo-min.png" alt="logo" />
+            <img
+              src="/src/assets/images/logo-min.png"
+              alt="logo"
+              @click="$router.push({ name: 'home' })"
+              class="cursor-pointer"
+            />
           </v-col>
           <v-col cols="5">
             <div class="relative w-[90%]">
@@ -117,17 +122,21 @@
         </v-row>
 
         <v-row class="mt-6">
-          <v-col cols="5">
+          <v-col cols="6">
             <ul class="links flex justify-between">
-              <li>Themo Demo</li>
-              <li>Shop</li>
-              <li>Product</li>
-              <li>New In</li>
-              <li>Must Have</li>
-              <li>Collections</li>
+              <li v-for="category in categories" :key="category">
+                <router-link
+                  :to="{
+                    name: 'products-category',
+                    params: { category: category.route, title: category.title },
+                  }"
+                >
+                  {{ category.title }}
+                </router-link>
+              </li>
             </ul>
           </v-col>
-          <v-col cols="2"></v-col>
+          <v-col cols="1"></v-col>
           <v-col cols="5" class="flex justify-end gap-[35px]">
             <div class="help flex items-center gap-1">
               <svg
@@ -177,6 +186,12 @@
 
 <script setup>
 import { inject, ref } from "vue";
+import { computed } from "vue";
+import { useProductsStore } from "@/stores/products";
+
+const productStore = useProductsStore();
+const categories = computed(() => productStore.categories);
+
 const Emitter = inject("Emitter");
 
 const openCart = () => {
