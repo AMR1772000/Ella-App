@@ -88,6 +88,12 @@
                     style="text-transform: none; border-radius: 30px"
                     variant="outlined"
                     density="compact"
+                    @click="
+                      $router.push({
+                        name: 'product_details',
+                        params: { productId: item.id },
+                      })
+                    "
                     >Choose Options</v-btn
                   >
                 </div>
@@ -102,7 +108,7 @@
 
 <script setup>
 import { useProductsStore } from "@/stores/products";
-import { onMounted, watch, computed, ref } from "vue";
+import { onBeforeMount, watch, computed, ref } from "vue";
 import { useRoute } from "vue-router";
 
 const showenItem = ref([]);
@@ -124,7 +130,8 @@ watch(
   }
 );
 
-onMounted(async () => {
+onBeforeMount(async () => {
+  console.log(route);
   loading.value = true;
   await productStore.getProductsByCategory(route.params.category);
   loading.value = false;

@@ -100,6 +100,12 @@
               style="text-transform: none; border-radius: 30px"
               variant="outlined"
               density="compact"
+              @click="
+                $router.push({
+                  name: 'product_details',
+                  params: { productId: item.id },
+                })
+              "
               >Choose Options</v-btn
             >
           </div>
