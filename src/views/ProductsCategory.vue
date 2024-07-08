@@ -5,6 +5,7 @@
     </h1>
     <v-container>
       <v-card :loading="loading" class="pt-5" min-height="700px" elevation="0">
+        <!-- skeleton -->
         <v-row class="flex justify-center items-center">
           <v-col cols="12">
             <v-row v-if="loading" class="flex justify-center items-center">
@@ -26,7 +27,7 @@
             <v-lazy>
               <v-card elevation="0" class="pb-5">
                 <v-hover v-slot="{ isHovering, props }">
-                  <div class="parent h-[240px] overflow-hidden">
+                  <div class="img-parent relative h-[240px] overflow-hidden">
                     <img
                       :src="
                         showenItem[item.title]
@@ -40,6 +41,26 @@
                       class="w-full h-full"
                       v-bind="props"
                     />
+                    <v-btn
+                      density="compact"
+                      width="100"
+                      height="30"
+                      variant="outlined"
+                      class="bg-white quick-view-btn"
+                      style="
+                        text-transform: none;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        border-radius: 30px;
+                        font-size: 14px;
+                        transition: 0.2s all ease-in-out;
+                        opacity: 0;
+                      "
+                      @click="openQuickView(item)"
+                      >Quick View</v-btn
+                    >
                   </div>
                 </v-hover>
 
@@ -108,13 +129,18 @@
 
 <script setup>
 import { useProductsStore } from "@/stores/products";
-import { onBeforeMount, watch, computed, ref } from "vue";
+import { onBeforeMount, watch, computed, ref, inject } from "vue";
 import { useRoute } from "vue-router";
 
 const showenItem = ref([]);
 const loading = ref(false);
 const route = useRoute();
 const productStore = useProductsStore();
+const Emitter = inject("Emitter");
+
+const openQuickView = (product) => {
+  Emitter.emit("openQuickView", product);
+};
 
 //computed
 const productCategory = computed(() => productStore.productCategory);
@@ -138,4 +164,10 @@ onBeforeMount(async () => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.img-parent:hover {
+  .quick-view-btn {
+    opacity: 1 !important;
+  }
+}
+</style>

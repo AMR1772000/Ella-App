@@ -1,11 +1,13 @@
 <script setup>
 import { RouterView } from "vue-router";
 import AppLayout from "./components/global/AppLayout.vue";
+import QuickView from "@/components/home-page/QuickView.vue";
 </script>
 
 <template>
   <app-layout>
     <RouterView />
+    <QuickView />
   </app-layout>
 </template>
 <style>

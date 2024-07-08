@@ -108,6 +108,16 @@
               />
               <v-icon size="22" @click="quantity++">mdi-plus</v-icon>
             </div>
+            <!-- Subtitle -->
+            <v-card-text class="pl-0 pb-2">
+              Subtitle: ${{
+                Math.ceil(
+                  singleProduct.price -
+                    singleProduct.price *
+                      (singleProduct.discountPercentage / 100)
+                ) * quantity
+              }}
+            </v-card-text>
             <!-- button Add to card -->
             <div class="w-full px-0">
               <v-btn

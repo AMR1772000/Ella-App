@@ -31,7 +31,7 @@
       <swiper-slide v-for="item in products" :key="item.id">
         <v-card elevation="0" class="pb-5">
           <v-hover v-slot="{ isHovering, props }">
-            <div class="parent h-[280px] overflow-hidden">
+            <div class="img-parent relative h-[280px] overflow-hidden">
               <img
                 :src="
                   showenItem[item.title]
@@ -45,6 +45,26 @@
                 class="w-full h-full"
                 v-bind="props"
               />
+              <v-btn
+                density="compact"
+                width="80"
+                height="30"
+                variant="outlined"
+                class="bg-white quick-view-btn"
+                style="
+                  text-transform: none;
+                  position: absolute;
+                  left: 50%;
+                  top: 50%;
+                  transform: translate(-50%, -50%);
+                  border-radius: 30px;
+                  font-size: 14px;
+                  transition: 0.2s all ease-in-out;
+                  opacity: 0;
+                "
+                @click="openQuickView(item)"
+                >Quick View</v-btn
+              >
             </div>
           </v-hover>
 
@@ -111,6 +131,7 @@
           </div>
         </v-card>
       </swiper-slide>
+
       <div class="swiper-prev"></div>
       <div class="swiper-next"></div>
       <div class="swiper-pagination"></div>
@@ -119,10 +140,14 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from "vue";
+import { defineProps, ref, inject } from "vue";
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import { Pagination, Navigation, Autoplay } from "swiper";
 
+const Emitter = inject("Emitter");
+const openQuickView = (product) => {
+  Emitter.emit("openQuickView", product);
+};
 const showenItem = ref([]);
 const modules = [Pagination, Navigation, Autoplay];
 // Define the props
@@ -165,6 +190,11 @@ const props = defineProps({
   .swiper-pagination-bullet {
     width: 10px;
     height: 10px;
+  }
+  .img-parent:hover {
+    .quick-view-btn {
+      opacity: 1 !important;
+    }
   }
 }
 </style>
