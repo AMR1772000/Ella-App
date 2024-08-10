@@ -6,6 +6,7 @@ export const useCartStore = defineStore("cartStore", {
   }),
   actions: {
     addItems(item) {
+<<<<<<< HEAD
       let exists = false;
       for (let i = 0; i < this.cartItems.length; i++) {
         if (this.cartItems[i].id === item.id) {
@@ -35,5 +36,10 @@ export const useCartStore = defineStore("cartStore", {
       }
       localStorage.setItem("cart-items", JSON.stringify(this.cartItems));
     },
+=======
+      this.cartItems.push(item);
+      console.log(this.cartItems);
+    },
+>>>>>>> bdbebbcae6153bd29ab8f378d94f26445f94a71b
   },
 });

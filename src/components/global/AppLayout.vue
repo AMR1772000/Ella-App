@@ -1,7 +1,11 @@
 <template>
   <v-layout class="relative">
     <CardDrawer />
+<<<<<<< HEAD
     <v-main class="mt-[145px]">
+=======
+    <v-main class="mt-[160px]">
+>>>>>>> bdbebbcae6153bd29ab8f378d94f26445f94a71b
       <slot> </slot>
     </v-main>
     <AppNav />
