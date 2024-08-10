@@ -152,11 +152,7 @@
                       background-color: #454545;
                       color: white;
                     "
-<<<<<<< HEAD
                     @click="addToCart(product)"
-=======
-                    @click="cartStore.addItems(product)"
->>>>>>> bdbebbcae6153bd29ab8f378d94f26445f94a71b
                     >Add To Cart</v-btn
                   >
                 </div>
@@ -181,14 +177,10 @@ const loading = ref(false);
 const dialog = ref(false);
 const product = ref("");
 
-<<<<<<< HEAD
 const addToCart = (item) => {
   item.quantity = quantity.value;
   cartStore.addItems(item);
 }
-
-=======
->>>>>>> bdbebbcae6153bd29ab8f378d94f26445f94a71b
 onMounted(() => {
   Emitter.on("openQuickView", (data) => {
     loading.value = true;
