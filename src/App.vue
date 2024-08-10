@@ -1,7 +1,7 @@
 <script setup>
 import { RouterView } from "vue-router";
 import AppLayout from "./components/global/AppLayout.vue";
-import QuickView from "@/components/home-page/QuickView.vue";
+import QuickView from "@/components/global/QuickView.vue";
 </script>
 
 <template>

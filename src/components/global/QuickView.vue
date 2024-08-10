@@ -152,6 +152,7 @@
                       background-color: #454545;
                       color: white;
                     "
+                    @click="cartStore.addItems(product)"
                     >Add To Cart</v-btn
                   >
                 </div>
@@ -166,6 +167,8 @@
 
 <script setup>
 import { onMounted, ref, inject } from "vue";
+import { useCartStore } from "@/stores/cart";
+const cartStore = useCartStore();
 
 const Emitter = inject("Emitter");
 const tab = ref("");
